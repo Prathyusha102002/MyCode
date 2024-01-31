@@ -17,13 +17,21 @@ import lombok.Setter;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long emp_id;
 	
 	@Column(name = "Employee_Name", nullable = false)
-	private String ename;
+	private String Ename;
 	
 	@Column(name = "Email_ID", nullable = false)
-	private String email;
-
+	private String Email;
+	
+	@Column(name = "Unix")
+	private int unix;
+	
+	@Column(name = "Java")
+	private int java;
+	
+	@Column(name = "Software_Testing")
+	private int testing;
+	
 }

@@ -39,6 +39,32 @@ public class Employee {
 	public Employee() {
 	}
 
+
+//	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+//	private Interview interview;
+//
+//	// Other methods and annotations
+//
+//	public Interview getInterview() {
+//		return interview;
+//	}
+//
+//	public void setInterview(Interview interview) {
+//		this.interview = interview;
+//	}
+//
+//	@OneToOne(mappedBy="employee", cascade= CascadeType.ALL)
+//	private Marks marks;
+//	public Marks getMarks()
+//	{
+//		return marks;
+//
+//	}
+//	public void setMarks(Marks marks)
+//	{
+//		this.marks=marks;
+//	}
+
 	public void setEmp_id(Long emp_id) {
 		this.emp_id = emp_id;
 	}

@@ -2,45 +2,91 @@ package com.empbulletin.bootcampersbulletin.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
 @Table(name = "Employee")
-
 public class Employee {
-	
+
 	@Id
-	private long emp_id;
-	
-	@Column(name = "Employee_Name", nullable = false)
-	private String Ename;
-	
-	@Column(name = "Email_ID", nullable = false)
-	private String Email;
+	@Column(name="emp_id")
+	private Long emp_id; // Assuming this is the ID for Employee
 
-	@Column(name = "Batch_No", nullable = false)
-	private String batch;
+	@Column(name = "emp_name")
+	private String emp_name;
+	
+	@Column(name = "emp_mail")
+	private String emp_mail;
 
-	@Column(name = "Password", nullable = false)
-	private  String password;
+	@Column(name="password")
+	private String password;
+
+	@Column(name="batchNo")
+	private Integer batchNo;
+
+	public Employee(Long emp_id, String emp_name, String emp_mail, String password, Integer batchNo) {
+		this.emp_id = emp_id;
+		this.emp_name = emp_name;
+		this.emp_mail = emp_mail;
+		this.password = password;
+		this.batchNo = batchNo;
+	}
+
+	public Employee() {
+	}
+
+	public void setEmp_id(Long emp_id) {
+		this.emp_id = emp_id;
+	}
+
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+
+	public void setEmp_mail(String emp_mail) {
+		this.emp_mail = emp_mail;
+	}
 
 	public void setPassword(String password) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encryptedPassword = passwordEncoder.encode(password);
-		this.password = encryptedPassword;
+		this.password = password;
 	}
 
-	public boolean isPasswordValid(String password) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		return passwordEncoder.matches(password, this.password);
+	public void setBatchNo(Integer batchNo) {
+		this.batchNo = batchNo;
 	}
 
+	public Long getEmp_id() {
+		return emp_id;
+	}
+
+	public String getEmp_name() {
+		return emp_name;
+	}
+
+	public String getEmp_mail() {
+		return emp_mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Integer getBatchNo() {
+		return batchNo;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee{" +
+				"emp_id=" + emp_id +
+				", emp_name='" + emp_name + '\'' +
+				", emp_mail='" + emp_mail + '\'' +
+				", password='" + password + '\'' +
+				", batchNo=" + batchNo +
+				'}';
+	}
 }

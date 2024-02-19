@@ -4,6 +4,8 @@ package com.empbulletin.bootcampersbulletin.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Entity
@@ -22,17 +24,20 @@ public class Employee {
 	@Column(name = "emp_mail")
 	private String emp_mail;
 
+
 	@Column(name="password")
 	private String password;
 
 	@Column(name="batchNo")
 	private Integer batchNo;
 
+	@Transient
+	private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	public Employee(Long emp_id, String emp_name, String emp_mail, String password, Integer batchNo) {
 		this.emp_id = emp_id;
 		this.emp_name = emp_name;
 		this.emp_mail = emp_mail;
-		this.password = password;
+		this.password = passwordEncoder.encode(password);
 		this.batchNo = batchNo;
 	}
 
@@ -40,30 +45,6 @@ public class Employee {
 	}
 
 
-//	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-//	private Interview interview;
-//
-//	// Other methods and annotations
-//
-//	public Interview getInterview() {
-//		return interview;
-//	}
-//
-//	public void setInterview(Interview interview) {
-//		this.interview = interview;
-//	}
-//
-//	@OneToOne(mappedBy="employee", cascade= CascadeType.ALL)
-//	private Marks marks;
-//	public Marks getMarks()
-//	{
-//		return marks;
-//
-//	}
-//	public void setMarks(Marks marks)
-//	{
-//		this.marks=marks;
-//	}
 
 	public void setEmp_id(Long emp_id) {
 		this.emp_id = emp_id;
@@ -78,7 +59,7 @@ public class Employee {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = passwordEncoder.encode(password);
 	}
 
 	public void setBatchNo(Integer batchNo) {
@@ -97,9 +78,7 @@ public class Employee {
 		return emp_mail;
 	}
 
-	public String getPassword() {
-		return password;
-	}
+
 
 	public Integer getBatchNo() {
 		return batchNo;
@@ -111,7 +90,6 @@ public class Employee {
 				"emp_id=" + emp_id +
 				", emp_name='" + emp_name + '\'' +
 				", emp_mail='" + emp_mail + '\'' +
-				", password='" + password + '\'' +
 				", batchNo=" + batchNo +
 				'}';
 	}

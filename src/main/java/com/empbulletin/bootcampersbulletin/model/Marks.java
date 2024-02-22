@@ -11,7 +11,7 @@ public class Marks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer marks_id;
+    private Long marks_id;
    @ManyToOne
    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id")
    private Employee employee;
@@ -60,7 +60,7 @@ public class Marks {
    public Marks() {
    }
 
-   public Marks(Integer marks_id, Employee employee, Float unix, Float sequel, Float java, Float testing, Float python, Float aiml, Float azure, Float git, Float jenkins, Float devops)
+   public Marks(Long marks_id, Employee employee, Float unix, Float sequel, Float java, Float testing, Float python, Float aiml, Float azure, Float git, Float jenkins, Float devops)
    {
     this.marks_id = marks_id;
     this.employee = employee;
@@ -78,12 +78,12 @@ public class Marks {
 
 
 
-   public Integer getMarks_id()
+   public Long getMarks_id()
    {
      return marks_id;
  }
 
- public void setMarks_id(Integer marks_id) {
+ public void setMarks_id(Long marks_id) {
   this.marks_id = marks_id;
  }
 

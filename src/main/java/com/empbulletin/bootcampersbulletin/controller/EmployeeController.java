@@ -54,30 +54,7 @@ public class EmployeeController {
 	public Employee createEmployee(@RequestBody Employee employee) {
 		return eR.save(employee);
 	}
-	@PostMapping("/{empId}/marks")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Marks enterMarksForEmployee(@PathVariable Long empId, @RequestBody Marks marks) {
-		Optional<Employee> employeeOptional = eR.findById(empId);
-		if (employeeOptional.isPresent()) {
-			marks.setEmployee(employeeOptional.get()); // Associate marks with the employee
-			return mR.save(marks); // Use the instance method save() on marksRepository
-		} else {
-			// Handle the case where employee with given id doesn't exist
-			throw new ResourceNotFoundException("Employee with id " + empId + " not found");
-		}
-	}
-	@PostMapping("/{empId}/interview")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Interview enterInterviewForEmployee(@PathVariable Long empId, @RequestBody Interview interview) {
-		Optional<Employee> employeeOptional = eR.findById(empId);
-		if (employeeOptional.isPresent()) {
-			interview.setEmployee(employeeOptional.get()); // Associate marks with the employee
-			return iR.save(interview); // Use the instance method save() on marksRepository
-		} else {
-			// Handle the case where employee with given id doesn't exist
-			throw new ResourceNotFoundException("Employee with id " + empId + " not found");
-		}
-	}
+
 //	@GetMapping("/{empId}/interview")
 //	public Interview getInterviewForEmployee(@PathVariable Long empId) {
 //		Optional<Employee> employeeOptional = eR.findById(empId);

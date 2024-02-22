@@ -14,6 +14,7 @@ import com.empbulletin.bootcampersbulletin.repository.EmployeeRepository;
 public class BootcampersbulletinApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(BootcampersbulletinApplication.class, args);
     }
     
